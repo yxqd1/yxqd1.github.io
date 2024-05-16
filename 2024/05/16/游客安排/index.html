@@ -1,0 +1,273 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>游客安排 | yxqd</title><meta name="author" content="yxqd"><meta name="copyright" content="yxqd"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="游客安排涉及知识点：（最长上升子序列+动态规划+二分贪心） 题目大意题目描述题目链接：[P8736 蓝桥杯 2020 国 B] 游园安排 - 洛谷 | 计算机科学教育新生态 (luogu.com.cn) L 星球游乐园非常有趣，吸引着各个星球的游客前来游玩。小蓝是 L 星球 游乐园的管理员。 为了更"><link rel="shortcut icon" href="https://tuchuang.voooe.cn/images/2024/05/01/headysmiley.png"><link rel="canonical" href="https://yxqd1.github.io/2024/05/16/%E6%B8%B8%E5%AE%A2%E5%AE%89%E6%8E%92/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"You have switched to Traditional Chinese","cht_to_chs":"You have switched to Simplified Chinese","day_to_night":"You have switched to Dark Mode","night_to_day":"You have switched to Light Mode","bgLight":"var(--theme-color)","bgDark":"#191919","position":"top-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '游客安排',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-16 22:33:03'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tuchuang.voooe.cn/images/2024/05/01/owl.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://tuchuang.voooe.cn/images/2024/05/02/wallhaven-rrxyxw.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="yxqd"><span class="site-name">yxqd</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">游客安排</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-05-16T12:20:26.000Z" title="Created 2024-05-16 20:20:26">2024-05-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-05-16T14:33:03.273Z" title="Updated 2024-05-16 22:33:03">2024-05-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>8mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="游客安排"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="游客安排"><a href="#游客安排" class="headerlink" title="游客安排"></a>游客安排</h1><p>涉及知识点：（最长上升子序列+动态规划+二分贪心）</p>
+<h2 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>题目链接：[P8736 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P8736">蓝桥杯 2020 国 B] 游园安排 - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)</a></p>
+<p>L 星球游乐园非常有趣，吸引着各个星球的游客前来游玩。小蓝是 L 星球 游乐园的管理员。</p>
+<p>为了更好的管理游乐园，游乐园要求所有的游客提前预约，小蓝能看到系统上所有预约游客的名字。每个游客的名字由一个大写英文字母开始，后面跟 0 个或多个小写英文字母。游客可能重名。</p>
+<p>小蓝特别喜欢递增的事物。今天，他决定在所有预约的游客中，选择一部分游客在上午游玩，其他的游客都在下午游玩，在上午游玩的游客<strong>要求按照预约的顺序排列后，名字是单调递增的，即排在前面的名字严格小于排在后面的名字。</strong></p>
+<p>一个名字 A 小于另一个名字 B 是指：存在一个整数 i，使得 AA 的前 i 个字母与 B 的前 i 个字母相同，且 A 的第 i+1个字母小于 BB 的第 i+1 个字母。(如果 A 不存在第i+1 个字母且 B 存在第i+1 个字母, 也视为 A 的第i+1 个字母小于 B 的第i+1 个字母)</p>
+<p>作为小蓝的助手，你要按照小蓝的想法安排游客，同时你又希望上午有<strong>尽量多的游客</strong>游玩，请告诉小蓝让哪些游客上午游玩。如果方案有多种，请输出上午游玩的第一个游客名字最小的方案。如果此时还有多种方案，请输出第一个游客名字最小的前提下第二个游客名字最小的方案。如果仍然有多种，依此类推选择第三个、第四个……游客名字最小的方案。</p>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>输入包含一个字符串，按预约的顺序给出所有游客的名字，相邻的游客名字之间没有字符分隔。</p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>按预约顺序输出上午游玩的游客名单，中间不加任何分隔字符。</p>
+<h3 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h3><p>输入 #1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WoAiLanQiaobei</span><br></pre></td></tr></table></figure>
+
+<p>输出 #1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AiLanQiaobei</span><br></pre></td></tr></table></figure>
+
+<h3 id="说明-提示"><a href="#说明-提示" class="headerlink" title="说明&#x2F;提示"></a>说明&#x2F;提示</h3><p>对于 20% 的评测数据, 输入的总长度不超过20 个字母。</p>
+<p>对于 50% 的评测数据, 输入的总长度不超过 300 个字母。</p>
+<p>对于 70% 的评测数据, 输入的总长度不超过 10000 个字母。</p>
+<p>对于所有评测数据, 每个名字的长度不超过 10 个字母, 输入的总长度不超过 10^6个字母。</p>
+<p>蓝桥杯 2020 年国赛 B 组 G 题。</p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_30347475/article/details/117395573">第十一届蓝桥杯-游园安排_一个老蒟蒻的博客-CSDN博客</a></p>
+<p>最长上升子序列：<a target="_blank" rel="noopener" href="https://blog.csdn.net/lxt_Lucia/article/details/81206439">最长上升子序列 (LIS) 详解+例题模板 (全)_lxt_Lucia的博客-CSDN博客_最长上升子序列</a></p>
+<p><strong>解析</strong><br>    题目我看了很久，第一次做的时候以为是一道简单的排序题，可是怎么都输出不对，后来看了别人的题解才知道，这道题的本质是最长上升子序列，于是自己也想了一想，确实如此，不然你怎么能确定上午安排人的人数呢？</p>
+<p>​    <strong>什么是最长上升子序列？</strong></p>
+<p>​    就是在一段字符中，取出某几个字符组成一个字符串，这个字符串的每一个字符都大于左边字符并且小于右边的字符，那么这个字符串就是上升序列，也就是说类似于函数中的单调递增的概念，就比如说abtxz这就是一个上升序列，那么最长上升子序列就是指一个字符串中的子序列中，最长的那个上升子序列</p>
+<p>​	但是呢，这一题又有点不一样，这是最长上升字典序的问题，就是将一个字符串的人名所组成的字典作为字符，取最长的上升子序列，简单点说，就是将最长上升子序列中的字符改成人名组成的字符串进行组合就行了，那么就很好理解了，看了下样例输出，果然如此。</p>
+<p>​	<strong>方法：动态规划优化-二分加贪心</strong><br>​	二分其实没啥，就是为了寻找某个元素，而且是直接使用lower_bound来查找的，所以没什么困难的地方，这里的重点在于贪心，下面讲讲贪心的思路</p>
+<p>​	首先将所有人序列取出存储到数组中后，先将第一个序列入队，遍历剩下所有序列，如果说碰见比队尾大的序列就直接入队，否则，也就是当前序列并不小于队尾序列的话，那么就用其代替掉队列中比其大的第一个序列（这是贪心思想，待会解释），并要更新一下当前情况下所能组成的最大单调子序列，将其入队</p>
+<p>​	运用贪心的思想，我们就能很容易确定最长上升子序列的长度，因为碰见大的就插入，碰见小的就替换，那么整各队列的长度最终一定会是最长上升序列的长度</p>
+<p>​	最后，我们从num开始往前遍历，和动态规划的回溯一样,这里就不解释了</p>
+<p>​	值得一说的是，这里使用动态数组主要是为了防止超内存</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">1e6</span>+<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> num;</span><br><span class="line">string s;</span><br><span class="line">string v[N];</span><br><span class="line">vector&lt;string&gt; endd;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; f;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cin&gt;&gt;s;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;s.<span class="built_in">length</span>();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(s[i]&gt;=<span class="string">&#x27;A&#x27;</span>&amp;&amp;s[i]&lt;=<span class="string">&#x27;Z&#x27;</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(i!=<span class="number">0</span>)</span><br><span class="line">				num++;</span><br><span class="line">			v[num]=<span class="string">&quot;&quot;</span>;</span><br><span class="line">			v[num]+=s[i];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			v[num]+=s[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	endd.<span class="built_in">push_back</span>(v[<span class="number">0</span>]);</span><br><span class="line">	f.<span class="built_in">push_back</span>(<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=num;i++)	<span class="comment">//遍历到最后一个子字符串数组元素 </span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(v[i]&gt;endd.<span class="built_in">back</span>())	<span class="comment">//如果当前end中的字符串能构成上升序列 </span></span><br><span class="line">		&#123;</span><br><span class="line">			endd.<span class="built_in">push_back</span>(v[i]);	<span class="comment">//则将当前子字符串入队 </span></span><br><span class="line">			f.<span class="built_in">push_back</span>(endd.<span class="built_in">size</span>());	<span class="comment">//那么当前动态数组的长度就是当前上升序列的长度 </span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> </span><br><span class="line">		&#123;   <span class="comment">//下面是贪心做法 </span></span><br><span class="line">			<span class="comment">//如果不能构成单调上升序列</span></span><br><span class="line">			<span class="type">int</span> pos=<span class="built_in">lower_bound</span>(endd.<span class="built_in">begin</span>(),endd.<span class="built_in">end</span>(),v[i])-endd.<span class="built_in">begin</span>();	</span><br><span class="line">			<span class="comment">//找到大于等于序列v[i]的第一个元素的位置 </span></span><br><span class="line">				 </span><br><span class="line">			endd[pos]=v[i];	<span class="comment">//将这个元素替换为v[i]（这个可能不好理解，下面会说的） </span></span><br><span class="line">			f.<span class="built_in">push_back</span>(pos+<span class="number">1</span>);</span><br><span class="line">			<span class="comment">//更新一下，那么当前的上升序列的长度就是pos+1（因为0-pos是单调上升的，加上0这个首元素所以是pos+1) </span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	string k[N];	<span class="comment">//用字符串连接会超时 </span></span><br><span class="line">  	<span class="type">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=num,m=endd.<span class="built_in">size</span>();m&gt;<span class="number">0</span>;i--)	<span class="comment">//类似动态规划将结果逆序输出</span></span><br><span class="line">	 &#123;</span><br><span class="line">		<span class="keyword">if</span>(f[i]==m)	</span><br><span class="line">		&#123;	</span><br><span class="line">			k[cnt++]=v[i];</span><br><span class="line">			m--;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">  	<span class="keyword">for</span>(<span class="type">int</span> i=cnt<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--) cout&lt;&lt;k[i];</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">现在来说一下贪心的思路</span><br><span class="line"></span><br><span class="line">首先我们上面说了，我们只要碰到比尾部小的元素就更换队列内的元素，否则就加入队尾，这种贪心思想其实就是方法一中的动态规划思想求出最长子序列的方法，f一样存储的是每个子序列的最长上升子序列的长度，所以说，不要这样想：我这样遍历不是动态数组里面的顺序都是乱的吗？那我到时候怎么输出啊，不不不，这种贪心只是为了能够用上二分法来对时间复杂度进行优化，他的本质还是动态规划，二分+贪心只是为了解决方法一中的嵌套循环的问题，使时间复杂度降低到 O(NlogN)</span><br></pre></td></tr></table></figure>
+
+<p>一个问题：最长非降序子序列如何寻找</p>
+<p>另外，在做题时，要用全局变量开数组，也不要用vector，因为要开双倍空间</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string ans[maxj];</span><br><span class="line">string ve[maxj];//以字符串为单位</span><br><span class="line">vector&lt;string&gt;ed;//记录答案序列</span><br><span class="line">vector&lt;int&gt;f;</span><br></pre></td></tr></table></figure>
+
+<p>AC代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">string ans[maxj];</span><br><span class="line">string ve[maxj];<span class="comment">//以字符串为单位</span></span><br><span class="line">vector&lt;string&gt;ed;<span class="comment">//记录答案序列</span></span><br><span class="line">vector&lt;<span class="type">int</span>&gt;f;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string s;</span><br><span class="line">    cin&gt;&gt;s;</span><br><span class="line">    <span class="type">int</span> num=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;s.<span class="built_in">size</span>();)&#123;</span><br><span class="line">        string now=<span class="string">&quot;&quot;</span>;</span><br><span class="line">        now+=s[i];</span><br><span class="line">        <span class="type">int</span> j;</span><br><span class="line">        <span class="keyword">for</span>(j=i+<span class="number">1</span>;j&lt;s.<span class="built_in">size</span>();++j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[j]&gt;=<span class="string">&#x27;A&#x27;</span>&amp;&amp;s[j]&lt;=<span class="string">&#x27;Z&#x27;</span>)<span class="keyword">break</span>;</span><br><span class="line">            now+=s[j];</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// cout&lt;&lt;now&lt;&lt;&#x27; &#x27;;</span></span><br><span class="line">        ve[num++]=now;</span><br><span class="line">        i=j;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">    ed.<span class="built_in">emplace_back</span>(ve[<span class="number">0</span>]);</span><br><span class="line">    f.<span class="built_in">emplace_back</span>(<span class="number">1</span>);<span class="comment">//记录大小</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;num;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(ve[i]&gt;ed.<span class="built_in">back</span>())&#123;</span><br><span class="line">            ed.<span class="built_in">emplace_back</span>(ve[i]);</span><br><span class="line">            f.<span class="built_in">emplace_back</span>(ed.<span class="built_in">size</span>());</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;<span class="comment">//贪心+二分</span></span><br><span class="line">            <span class="type">int</span> pos=<span class="built_in">lower_bound</span>(ed.<span class="built_in">begin</span>(),ed.<span class="built_in">end</span>(),ve[i])-ed.<span class="built_in">begin</span>();</span><br><span class="line">            ed[pos]=ve[i];</span><br><span class="line">            f.<span class="built_in">emplace_back</span>(pos+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    cnt=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=num,m=ed.<span class="built_in">size</span>();m&gt;=<span class="number">0</span>;--i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(f[i]==m)&#123;</span><br><span class="line">            m--;</span><br><span class="line">            ans[++cnt]=ve[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=cnt;i&gt;=<span class="number">1</span>;--i)cout&lt;&lt;ans[i];cout&lt;&lt;<span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;   </span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://yxqd1.github.io">yxqd</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://yxqd1.github.io/2024/05/16/%E6%B8%B8%E5%AE%A2%E5%AE%89%E6%8E%92/">https://yxqd1.github.io/2024/05/16/%E6%B8%B8%E5%AE%A2%E5%AE%89%E6%8E%92/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/05/16/%E4%BA%8C%E8%BF%9B%E5%88%B6%E9%97%AE%E9%A2%98/" title="二进制问题"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tuchuang.voooe.cn/images/2024/05/02/Konachan.com---376236-sample.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">二进制问题</div></div></a></div><div class="next-post pull-right"><a href="/2024/05/02/%E9%83%A8%E5%88%86%E5%92%8C%E4%BD%8D%E7%BD%AE%E6%9C%89%E5%85%B3%E7%9A%84%E9%A2%98/" title="部分和位置有关的题"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tuchuang.voooe.cn/images/2024/05/02/Konachan.com---376549-sample.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">部分和位置有关的题</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2024/05/16/%E4%BA%8C%E8%BF%9B%E5%88%B6%E9%97%AE%E9%A2%98/" title="二进制问题"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tuchuang.voooe.cn/images/2024/05/02/Konachan.com---376236-sample.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2024-05-16</div><div class="title">二进制问题</div></div></a></div><div><a href="/2024/05/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%A2%98/" title="动态规划题"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://source.fomal.cc/img/default_cover_14.webp" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2024-05-16</div><div class="title">动态规划题</div></div></a></div><div><a href="/2024/05/16/%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="字符串"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tuchuang.voooe.cn/images/2024/05/02/Konachan.com---376180-sample.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2024-05-16</div><div class="title">字符串</div></div></a></div><div><a href="/2024/05/02/%E9%83%A8%E5%88%86%E5%92%8C%E4%BD%8D%E7%BD%AE%E6%9C%89%E5%85%B3%E7%9A%84%E9%A2%98/" title="部分和位置有关的题"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tuchuang.voooe.cn/images/2024/05/02/Konachan.com---376549-sample.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2024-05-16</div><div class="title">部分和位置有关的题</div></div></a></div><div><a href="/2024/05/02/%E9%83%A8%E5%88%86Acwing/" title="部分Acwing"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tuchuang.voooe.cn/images/2024/05/02/Konachan.com---376549-sample.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2024-05-16</div><div class="title">部分Acwing</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B8%B8%E5%AE%A2%E5%AE%89%E6%8E%92"><span class="toc-text">游客安排</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F"><span class="toc-text">题目大意</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B"><span class="toc-text">输入输出样例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E-%E6%8F%90%E7%A4%BA"><span class="toc-text">说明&#x2F;提示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3"><span class="toc-text">题解</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By yxqd</div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.<p><a target="_blank" href="https://hexo.io/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://www.jsdelivr.com/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Toggle Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.8/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="30" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
